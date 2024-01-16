@@ -1,0 +1,9 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     stamps
+relocations:
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003944, symSize: 0x1B8 }
+  - { offsetInCU: 0x41, offset: 0x41, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003944, symSize: 0x1B8 }
+  - { offsetInCU: 0x26, offset: 0x109, size: 0x8, addend: 0x0, symName: _print_stamps, symObjAddr: 0x0, symBinAddr: 0x100003AFC, symSize: 0x3D0 }
+  - { offsetInCU: 0x41, offset: 0x124, size: 0x8, addend: 0x0, symName: _print_stamps, symObjAddr: 0x0, symBinAddr: 0x100003AFC, symSize: 0x3D0 }
+...
