@@ -1,0 +1,807 @@
+
+1.reverse
+the program is trying to reverse the input characters by iterations and output the numebr and string length of the input characters
+the program starts printing from the last character to the first character, and it counts the string length
+it needs user to type the desired string to run the program.
+indentify of debugging-----------------------------------------------------------------------
+
+    (gdb) r ""
+    Starting program: /home/jc131/mp7/printRev/prev ""
+    9 8 7 6 5 4 3 2 1 0
+    What's on the stack now?
+    "" reversed is "" (length 0)
+    [Inferior 1 (process 2987946) exited normally]
+
+
+bug:(gdb) r 0
+    Starting program: /home/jc131/mp7/printRev/prev 0
+    9 8 7 6 5 4 3 2 1 0
+    What's on the stack now?
+    "0" reversed is "0" (length 32768)  =>should be length 1
+    [Inferior 1 (process 2987706) exited normally]
+
+
+    (gdb) r %1
+    Starting program: /home/jc131/mp7/printRev/prev %1
+    9 8 7 6 5 4 3 2 1 0
+    What's on the stack now?
+    "%1" reversed is "1%" (length 2)
+    [Inferior 1 (process 2988128) exited normally]
+
+
+bug:(gdb) r $
+    Starting program: /home/jc131/mp7/printRev/prev $
+    9 8 7 6 5 4 3 2 1 0
+    What's on the stack now?
+
+    "$" reversed is "$" (length 32768) should be length 1
+    [Inferior 1 (process 2988265) exited normally]
+
+
+    (gdb) r hhe
+    Starting program: /home/jc131/mp7/printRev/prev hhe
+    9 8 7 6 5 4 3 2 1 0
+    What's on the stack now?
+
+    "hhe" reversed is "ehh" (length 3)
+    [Inferior 1 (process 2988671) exited normally]
+
+
+bug:(gdb) r dasb
+    Starting program: /home/jc131/mp7/printRev/prev dasb
+    9 8 7 6 5 4 3 2 1 0
+    What's on the stack now?
+
+    "dasb" reversed is "bsad" (length 32771) should be length 4
+    [Inferior 1 (process 2988884) exited normally]
+
+
+    (gdb) r ndasb
+    Starting program: /home/jc131/mp7/printRev/prev ndasb
+    9 8 7 6 5 4 3 2 1 0
+    What's on the stack now?
+
+    "ndasb" reversed is "bsadn" (length 5)
+    [Inferior 1 (process 2988967) exited normally]
+
+
+    (gdb) r becky
+    Starting program: /home/jc131/mp7/printRev/prev becky
+    9 8 7 6 5 4 3 2 1 0
+    What's on the stack now?
+
+    "becky" reversed is "ykceb" (length 5)
+    [Inferior 1 (process 2989111) exited normally]
+
+
+    (gdb) r Ubecky
+    Starting program: /home/jc131/mp7/printRev/prev Ubecky
+    9 8 7 6 5 4 3 2 1 0
+    What's on the stack now?
+
+    "Ubecky" reversed is "ykcebU" (length 6)
+    [Inferior 1 (process 3008756) exited normally]
+
+
+    (gdb) r UMbecky
+    Starting program: /home/jc131/mp7/printRev/prev UMbecky
+    9 8 7 6 5 4 3 2 1 0
+    What's on the stack now?
+
+    "UMbecky" reversed is "ykcebMU" (length 7)
+    [Inferior 1 (process 3009250) exited normally]
+
+
+    (gdb) r PorBecky
+    Starting program: /home/jc131/mp7/printRev/prev PorBecky
+    9 8 7 6 5 4 3 2 1 0
+    What's on the stack now?
+
+    "PorBecky" reversed is "ykceBroP" (length 8)
+
+
+    (gdb) r PortBecky
+    Starting program: /home/jc131/mp7/printRev/prev PortBecky
+    9 8 7 6 5 4 3 2 1 0
+    What's on the stack now?
+
+    "PortBecky" reversed is "ykceBtroP" (length 9)
+    [Inferior 1 (process 3022342) exited normally]
+
+
+bug:(gdb) r PortBec_ky
+    Starting program: /home/jc131/mp7/printRev/prev PortBec_ky
+    9 8 7 6 5 4 3 2 1 0
+    What's on the stack now?
+
+    "PortBec_ky" reversed is "yk_ceBtroP" (length 32777) should be length 10
+    [Inferior 1 (process 3022731) exited normally]
+    
+
+bug:(gdb) r Porta_Becky
+    Starting program: /home/jc131/mp7/printRev/prev Porta_Becky
+    9 8 7 6 5 4 3 2 1 0
+    What's on the stack now?
+
+    "Porta_Becky" reversed is "ykceB_atroP" (length 32778) should be length 11
+    [Inferior 1 (process 3023751) exited normally]
+
+
+    (gdb) r PortuaBeck!y
+    Starting program: /home/jc131/mp7/printRev/prev PortuaBeck!y
+    9 8 7 6 5 4 3 2 1 0
+    What's on the stack now?
+
+    "PortuaBeck!y" reversed is "y!kceBautroP" (length 12)
+    [Inferior 1 (process 3025914) exited normally]
+
+
+bug:(gdb) r Portual*Becky
+    Starting program: /home/jc131/mp7/printRev/prev Portual*Becky
+    9 8 7 6 5 4 3 2 1 0
+    What's on the stack now?
+
+    "Portual*Becky" reversed is "ykceB*lautroP" (length 32780) should be length 13
+    [Inferior 1 (process 3026274) exited normally]
+
+
+bug:(gdb) r Portugal_becky
+    Starting program: /home/jc131/mp7/printRev/prev Portugal_becky
+    9 8 7 6 5 4 3 2 1 0
+    What's on the stack now?
+
+    "Portugal_becky" reversed is "ykceb_lagutroP" (length 32780)  should be length 14
+    [Inferior 1 (process 1445920) exited normally]
+
+
+bug:(gdb) r Portugal_wbecky
+    Starting program: /home/jc131/mp7/printRev/prev Portugal_wbecky
+    9 8 7 6 5 4 3 2 1 0
+    What's on the stack now?
+
+    "Portugal_wbecky" reversed is "ykcebw_lagutroP" (length 32782) should be length 15
+    [Inferior 1 (process 1448149) exited normally]
+
+
+bug:(gdb) r Portugal_webecky
+    Starting program: /home/jc131/mp7/printRev/prev Portugal_webecky
+    9 8 7 6 5 4 3 2 1 0
+    What's on the stack now?
+
+    "Portugal_webecky" reversed is "ykcebew_lagutroP" (length 32783) should be length 16
+    [Inferior 1 (process 1449636) exited normally]
+
+    (gdb) r GonPortug*albecky
+    Starting program: /home/jc131/mp7/printRev/prev GonPortug*albecky
+    9 8 7 6 5 4 3 2 1 0
+    What's on the stack now?
+
+    "GonPortug*albecky" reversed is "ykcebla*gutroPnoG" (length 17)
+    [Inferior 1 (process 1453555) exited normally]
+
+
+    (gdb) r GonPo_rtug*albecky
+    Starting program: /home/jc131/mp7/printRev/prev GonPo_rtug*albecky
+    9 8 7 6 5 4 3 2 1 0
+    What's on the stack now?
+
+    "GonPo_rtug*albecky" reversed is "ykcebla*gutr_oPnoG" (length 32785) should be 18
+    [Inferior 1 (process 1455784) exited normally]
+
+
+    (gdb) r GonePo_rtug*albecky
+    Starting program: /home/jc131/mp7/printRev/prev GonePo_rtug*albecky
+    9 8 7 6 5 4 3 2 1 0
+    What's on the stack now?
+
+    "GonePo_rtug*albecky" reversed is "ykcebla*gutr_oPenoG" (length 19)
+    [Inferior 1 (process 1456371) exited normally]
+
+
+
+trace of debugging--------------------------------------------------------------------------------    
+    //first try the good becky
+    (gdb) b 41
+    Breakpoint 5 at 0x40066d: file pr_buggy.c, line 41.
+    (gdb) b 48
+    Breakpoint 6 at 0x400685: file pr_buggy.c, line 48.
+    (gdb) run becky
+    Starting program: /home/jc131/mp7/printRev/prev becky
+    9 8 7 6 5 4 3 2 1 0
+    What's on the stack now?
+
+
+    Breakpoint 5, print_reverse (s=0x7fffffffd98f "") at pr_buggy.c:41
+    41              return rest;
+    (gdb) print rest
+    $16 = 0
+    (gdb) c
+    Continuing.
+
+    Breakpoint 6, print_reverse (s=0x7fffffffd98e "y") at pr_buggy.c:48
+    48          printf ("%c", *s);
+    (gdb) print rest
+    $17 = 0
+    (gdb) c
+    Continuing.
+
+    Breakpoint 6, print_reverse (s=0x7fffffffd98d "ky") at pr_buggy.c:48
+    48          printf ("%c", *s);
+    (gdb) print rest
+    $18 = 1
+    (gdb) c
+    Continuing.
+
+    Breakpoint 6, print_reverse (s=0x7fffffffd98c "cky") at pr_buggy.c:48
+    48          printf ("%c", *s);
+    (gdb) print rest
+    $19 = 2
+    (gdb) c
+    Continuing.
+
+    Breakpoint 6, print_reverse (s=0x7fffffffd98b "ecky") at pr_buggy.c:48
+    48          printf ("%c", *s);
+    (gdb) print rest
+    $20 = 3
+    (gdb) c
+    Continuing.
+
+    Breakpoint 6, print_reverse (s=0x7fffffffd98a "becky") at pr_buggy.c:48
+    48          printf ("%c", *s);
+    (gdb) print rest
+    $21 = 4
+    (gdb) c
+    Continuing.
+    "becky" reversed is "ykceb" (length 5)
+    [Inferior 1 (process 1435344) exited normally]
+
+    //then try bug dasb//////////////////////////////////////////////////////////////////////
+
+    (gdb) b pr_buggy.c:41
+    Breakpoint 3 at 0x40066d: file pr_buggy.c, line 41.
+    (gdb) b pr_buggy.c:48
+    Breakpoint 4 at 0x400685: file pr_buggy.c, line 48.
+    (gdb) r dasb
+    Starting program: /home/jc131/mp7/printRev/prev dasb
+    9 8 7 6 5 4 3 2 1 0
+    What's on the stack now?
+
+
+    Breakpoint 3, print_reverse (s=0x7fffffffd98e "") at pr_buggy.c:41
+    41              return rest;
+    (gdb) print rest
+bug:$1 = 32767 //shoul be 0
+    (gdb) c
+    Continuing.
+
+    Breakpoint 4, print_reverse (s=0x7fffffffd98d "b") at pr_buggy.c:48
+    48          printf ("%c", *s);
+    (gdb) print rest
+bug: $2 = 32767 //should be 0
+    (gdb) c
+    Continuing.
+
+    Breakpoint 4, print_reverse (s=0x7fffffffd98c "sb") at pr_buggy.c:48
+    48          printf ("%c", *s);
+    (gdb) print rest
+bug:$3 = 32768  //should be 1
+    (gdb) c
+    Continuing.
+
+    Breakpoint 4, print_reverse (s=0x7fffffffd98b "asb") at pr_buggy.c:48
+    48          printf ("%c", *s);
+    (gdb) print rest
+bug:$4 = 32769  //should be 2
+    (gdb) c
+    Continuing.
+
+    Breakpoint 4, print_reverse (s=0x7fffffffd98a "dasb") at pr_buggy.c:48
+    48          printf ("%c", *s);
+    (gdb) print rest
+bug: $5 = 32770  //should be 3
+    (gdb) c
+    Continuing.
+bug:"dasb" reversed is "bsad" (length 32771)    //should be 4
+    [Inferior 1 (process 1461104) exited normally]
+
+
+analysis of debugging---------------------------------------------------------------------------------
+
+indentify reports:when the input numbers of the string are 0,2,3,5,6,7,8,9,12,17,19, the output string number is correct
+other cases I have tried are all wrong.
+
+trace reports:it may be owing to the lack of initialization of the rest which leads to wrong output of 
+rest in breakpoints.
+
+cause:the program lacks the initialization of rest
+way to fix:at line 32 change it into "int32_t rest=0;"
+
+
+2.primeNumber-----------------------------------------------------------------------------------------------
+indentify the debugging
+    2 is prime.
+    3 is prime.
+bug:4 is prime.
+    5 is prime.
+    7 is prime.
+bug:9 is prime.
+    11 is prime.
+    13 is prime.
+    17 is prime.
+    19 is prime.
+    23 is prime.
+bug:25 is prime.
+    29 is prime.
+    31 is prime.
+    37 is prime.
+    41 is prime.
+    43 is prime.
+    47 is prime.
+bug:49 is prime.
+
+//trace of debugging////////////////////////////////////////////////////////////////////////////////////////////
+    (gdb) b primeNumber.c:44
+    Breakpoint 1 at 0x4005b5: file primeNumber.c, line 44.
+    (gdb) b primeNumber.c:67
+    Breakpoint 2 at 0x4005e7: file primeNumber.c, line 67.
+    (gdb) r
+    Starting program: /home/jc131/mp7/primeNumber/primeNumber 
+
+    Breakpoint 1, main () at primeNumber.c:44
+    44                  printf ("%d is prime.\n", check);
+    (gdb) c
+    Continuing.
+    2 is prime.
+
+    Breakpoint 1, main () at primeNumber.c:44
+    44                  printf ("%d is prime.\n", check);
+    (gdb) s
+    3 is prime.
+    42          for (check = 2; 1000 > check; check++) {
+    (gdb) s
+    43              if (is_prime (check)) {
+    (gdb) s
+
+    Breakpoint 1, main () at primeNumber.c:44
+    44                  printf ("%d is prime.\n", check);
+    (gdb) s
+bug:4 is prime. //shouldn't be prime the number 2 is excluded so that it can't calculate 4/2=2
+    42          for (check = 2; 1000 > check; check++) {
+    (gdb) s
+    43              if (is_prime (check)) {
+    (gdb) 
+
+    Breakpoint 2, divides_evenly (divisor=2, value=5) at primeNumber.c:67
+    67          multiple = (value / divisor) * divisor;
+    (gdb) 
+    69          return (multiple == value);
+    (gdb) 
+    70      }
+    (gdb) 
+    0x000000000040062a in is_prime ()
+    (gdb) 
+    Single stepping until exit from function is_prime,
+    which has no line number information.
+    main () at primeNumber.c:43
+    43              if (is_prime (check)) {
+    (gdb) 
+
+    Breakpoint 1, main () at primeNumber.c:44
+    44                  printf ("%d is prime.\n", check);
+    (gdb) 
+    5 is prime.
+    42          for (check = 2; 1000 > check; check++) {
+    (gdb) 
+    43              if (is_prime (check)) {
+    (gdb) c
+    Continuing.
+
+    Breakpoint 2, divides_evenly (divisor=2, value=6) at primeNumber.c:67
+    67          multiple = (value / divisor) * divisor;
+    (gdb) 
+    Continuing.
+
+    Breakpoint 2, divides_evenly (divisor=2, value=7) at primeNumber.c:67
+    67          multiple = (value / divisor) * divisor;
+    (gdb) c
+    Continuing.
+
+    Breakpoint 1, main () at primeNumber.c:44
+    44                  printf ("%d is prime.\n", check);
+    (gdb) c
+    Continuing.
+    7 is prime.
+
+    Breakpoint 2, divides_evenly (divisor=2, value=8) at primeNumber.c:67
+    67          multiple = (value / divisor) * divisor;
+    (gdb) c
+    Continuing.
+
+    Breakpoint 2, divides_evenly (divisor=2, value=9) at primeNumber.c:67
+    67          multiple = (value / divisor) * divisor;
+    (gdb) print multiple
+    $1 = 8
+    (gdb) c
+    Continuing.
+
+    Breakpoint 1, main () at primeNumber.c:44
+    44                  printf ("%d is prime.\n", check);
+    (gdb) c
+    Continuing.
+    9 is prime.
+
+    Breakpoint 2, divides_evenly (divisor=2, value=10) at primeNumber.c:67
+    67          multiple = (value / divisor) * divisor;
+    (gdb) c
+    Continuing.
+
+    Breakpoint 2, divides_evenly (divisor=2, value=11) at primeNumber.c:67
+    67          multiple = (value / divisor) * divisor;
+    (gdb) print multiple
+    $2 = 10
+    (gdb) c
+    Continuing.
+
+    Breakpoint 2, divides_evenly (divisor=3, value=11) at primeNumber.c:67
+    67          multiple = (value / divisor) * divisor;
+    (gdb) c
+    Continuing.
+
+    Breakpoint 1, main () at primeNumber.c:44
+    44                  printf ("%d is prime.\n", check);
+    (gdb) c
+    Continuing.
+    11 is prime.
+
+    Breakpoint 2, divides_evenly (divisor=2, value=12) at primeNumber.c:67
+    67          multiple = (value / divisor) * divisor;
+    (gdb) c
+    Continuing.
+
+    Breakpoint 2, divides_evenly (divisor=2, value=13) at primeNumber.c:67
+    67          multiple = (value / divisor) * divisor;
+    (gdb) c
+    Continuing.
+
+    Breakpoint 2, divides_evenly (divisor=3, value=13) at primeNumber.c:67
+    67          multiple = (value / divisor) * divisor;
+    (gdb) c
+    Continuing.
+
+    Breakpoint 1, main () at primeNumber.c:44
+    44                  printf ("%d is prime.\n", check);
+    (gdb) c
+    Continuing.
+    13 is prime.
+
+    Breakpoint 2, divides_evenly (divisor=2, value=14) at primeNumber.c:67
+    67          multiple = (value / divisor) * divisor;
+    (gdb) c
+    Continuing.
+
+    Breakpoint 2, divides_evenly (divisor=2, value=15) at primeNumber.c:67
+    67          multiple = (value / divisor) * divisor;
+    (gdb) c
+    Continuing.
+
+    Breakpoint 2, divides_evenly (divisor=3, value=15) at primeNumber.c:67
+    67          multiple = (value / divisor) * divisor;
+    (gdb) c
+    Continuing.
+
+    Breakpoint 2, divides_evenly (divisor=2, value=16) at primeNumber.c:67
+    67          multiple = (value / divisor) * divisor;
+    (gdb) c
+    Continuing.
+
+    Breakpoint 2, divides_evenly (divisor=2, value=17) at primeNumber.c:67
+    67          multiple = (value / divisor) * divisor;
+    (gdb) c
+    Continuing.
+
+    Breakpoint 2, divides_evenly (divisor=3, value=17) at primeNumber.c:67
+    67          multiple = (value / divisor) * divisor;
+    (gdb) c
+    Continuing.
+
+    Breakpoint 2, divides_evenly (divisor=4, value=17) at primeNumber.c:67
+    67          multiple = (value / divisor) * divisor;
+    (gdb) c
+    Continuing.
+
+    Breakpoint 1, main () at primeNumber.c:44
+    44                  printf ("%d is prime.\n", check);
+    (gdb) c
+    Continuing.
+    17 is prime.
+
+    Breakpoint 2, divides_evenly (divisor=2, value=18) at primeNumber.c:67
+    67          multiple = (value / divisor) * divisor;
+    (gdb) c
+    Continuing.
+
+    Breakpoint 2, divides_evenly (divisor=2, value=19) at primeNumber.c:67
+    67          multiple = (value / divisor) * divisor;
+    (gdb) c
+    Continuing.
+
+    Breakpoint 2, divides_evenly (divisor=3, value=19) at primeNumber.c:67
+    67          multiple = (value / divisor) * divisor;
+    (gdb) c
+    Continuing.
+
+    Breakpoint 2, divides_evenly (divisor=4, value=19) at primeNumber.c:67
+    67          multiple = (value / divisor) * divisor;
+    (gdb) c
+    Continuing.
+
+    Breakpoint 1, main () at primeNumber.c:44
+    44                  printf ("%d is prime.\n", check);
+    (gdb) c
+    Continuing.
+    19 is prime.
+
+    Breakpoint 2, divides_evenly (divisor=2, value=20) at primeNumber.c:67
+    67          multiple = (value / divisor) * divisor;
+    (gdb) c
+    Continuing.
+
+    Breakpoint 2, divides_evenly (divisor=2, value=21) at primeNumber.c:67
+    67          multiple = (value / divisor) * divisor;
+    (gdb) c
+    Continuing.
+
+    Breakpoint 2, divides_evenly (divisor=3, value=21) at primeNumber.c:67
+    67          multiple = (value / divisor) * divisor;
+    (gdb) c
+    Continuing.
+
+    Breakpoint 2, divides_evenly (divisor=2, value=22) at primeNumber.c:67
+    67          multiple = (value / divisor) * divisor;
+    (gdb) c
+    Continuing.
+
+    Breakpoint 2, divides_evenly (divisor=2, value=23) at primeNumber.c:67
+    67          multiple = (value / divisor) * divisor;
+    (gdb) c
+    Continuing.
+
+    Breakpoint 2, divides_evenly (divisor=3, value=23) at primeNumber.c:67
+    67          multiple = (value / divisor) * divisor;
+    (gdb) c
+    Continuing.
+
+    Breakpoint 2, divides_evenly (divisor=4, value=23) at primeNumber.c:67
+    67          multiple = (value / divisor) * divisor;
+    (gdb) c
+    Continuing.
+
+    Breakpoint 1, main () at primeNumber.c:44
+    44                  printf ("%d is prime.\n", check);
+    (gdb) c
+    Continuing.
+    23 is prime.
+
+    Breakpoint 2, divides_evenly (divisor=2, value=24) at primeNumber.c:67
+    67          multiple = (value / divisor) * divisor;
+    (gdb) c
+    Continuing.
+
+    Breakpoint 2, divides_evenly (divisor=2, value=25) at primeNumber.c:67
+    67          multiple = (value / divisor) * divisor;
+    (gdb) s
+    69          return (multiple == value);
+    (gdb) s
+    70      }
+    (gdb) print multiple
+    $3 = 24
+    (gdb) c
+    Continuing.
+
+    Breakpoint 2, divides_evenly (divisor=3, value=25) at primeNumber.c:67
+    67          multiple = (value / divisor) * divisor;
+    (gdb) print multiple
+    $4 = 24
+    (gdb) c
+    Continuing.
+
+    Breakpoint 2, divides_evenly (divisor=4, value=25) at primeNumber.c:67
+    67          multiple = (value / divisor) * divisor;
+    (gdb) c
+    Continuing.
+
+    Breakpoint 1, main () at primeNumber.c:44
+    44                  printf ("%d is prime.\n", check);
+    (gdb) c
+    Continuing.
+bug:25 is prime.//shouldn't be prime because 5 is excluded
+
+    Breakpoint 2, divides_evenly (divisor=2, value=26) at primeNumber.c:67
+    67          multiple = (value / divisor) * divisor;
+
+
+analysis of debugging--------------------------------------------------------------------------------------------
+reports of indentify :the results show that it mistakenly regards the square of prime is prime such as
+4,9,25,49 and so on
+reports of trace:the prime divisor is exclued in the loop so that it can't calculate the divison which makes
+the square of prime regarded as prime.
+cause:it neglects the  cases of square of prime in the range, which lead to mistake,so it must consider the conditions
+that divides_evenly(sqrt(num),num)=1, if change the range to [2,square_root(num)],the problem will be solved
+
+
+
+
+3.sort
+trace of debugging-----------------------------------------------------------------------------------
+//correct sequences
+//test1.txt :number 20
+1 22 3 45 51 96 117 18 29 13 9 100 41 23 12 99 15 19 58 97
+//test2.txt:number:7
+12 88 66 99 654 785 35
+//test3.txt:number:10
+21 45 112 789 566 0 200 407 218 13
+
+(gdb) r test1.txt
+Starting program: /home/jc131/mp7/sort/sort test1.txt
+1 3 9 12 13 15 18 19 22 23 29 41 45 51 58 96 97 99 100 117 
+[Inferior 1 (process 1536009) exited normally]
+(gdb) r test2.txt
+Starting program: /home/jc131/mp7/sort/sort test2.txt
+12 35 66 88 99 654 785 
+[Inferior 1 (process 1536056) exited normally]
+(gdb) r test3.txt
+Starting program: /home/jc131/mp7/sort/sort test3.txt
+0 13 21 45 112 200 218 407 566 789 
+[Inferior 1 (process 1538654) exited normally]
+
+//wrong sequences
+    test4.txt number:5
+    0 -1 -4 4 5
+    test5.txt number:8 
+    -100 -65 -22 22 543 12 34 9
+
+    (gdb) r test4.txt
+    Starting program: /home/jc131/mp7/sort/sort test4.txt
+bug:-4 -1 0 4 5 
+    [Inferior 1 (process 1541125) exited normally]
+    (gdb) r test4.txt
+    Starting program: /home/jc131/mp7/sort/sort test4.txt
+bug:-4 -1 -1 0 4 
+    [Inferior 1 (process 1541181) exited normally]
+
+
+    (gdb) r test5.txt
+    Starting program: /home/jc131/mp7/sort/sort test5.txt
+bug:-100 -65 -22 9 12 22 22 34 
+    [Inferior 1 (process 1543704) exited normally]
+
+//trace process-------------------------------------
+
+
+
+    (gdb) b 35
+    Breakpoint 11 at 0x40098d: file sort.c, line 35.
+    (gdb) r test5.txt
+    Starting program: /home/jc131/mp7/sort/sort test5.txt
+
+    Breakpoint 8, heapify (arr=0x6054a0, n=8, i=2) at sort.c:26
+    26              largest = l;
+    (gdb) print l
+    $32 = 5
+    (gdb) c
+    Continuing.
+
+    Breakpoint 10, heapify (arr=0x6054a0, n=8, i=2) at sort.c:30
+    30              largest = r;
+    (gdb) print r
+    $33 = 6
+    (gdb) c
+    Continuing.
+
+    Breakpoint 11, heapify (arr=0x6054a0, n=8, i=2) at sort.c:35
+    35              swap(&arr[i], &arr[largest]);
+    (gdb) print arr[i]
+    $34 = -22
+    [Inferior 1 (process 1575953) exited normally]
+    (gdb) b 35
+    Breakpoint 12 at 0x40098d: file sort.c, line 35.
+    (gdb) r test5.txt
+    Starting program: /home/jc131/mp7/sort/sort test5.txt
+
+    Breakpoint 12, heapify (arr=0x6054a0, n=8, i=2) at sort.c:35
+    35              swap(&arr[i], &arr[largest]);
+    (gdb) print arr[0]
+    $51 = -100
+    (gdb) c
+    Continuing.
+
+    Breakpoint 12, heapify (arr=0x6054a0, n=8, i=1) at sort.c:35
+    35              swap(&arr[i], &arr[largest]);
+    (gdb) c
+    Continuing.
+
+    Breakpoint 12, heapify (arr=0x6054a0, n=8, i=0) at sort.c:35
+    35              swap(&arr[i], &arr[largest]);
+    (gdb) c
+    Continuing.
+
+    Breakpoint 12, heapify (arr=0x6054a0, n=8, i=1) at sort.c:35
+    35              swap(&arr[i], &arr[largest]);
+    (gdb) c
+    Continuing.
+
+    Breakpoint 12, heapify (arr=0x6054a0, n=8, i=3) at sort.c:35
+    35              swap(&arr[i], &arr[largest]);
+    (gdb) c
+    Continuing.
+
+    Breakpoint 12, heapify (arr=0x6054a0, n=7, i=0) at sort.c:35
+    35              swap(&arr[i], &arr[largest]);
+    (gdb) c
+    Continuing.
+
+    Breakpoint 12, heapify (arr=0x6054a0, n=7, i=2) at sort.c:35
+    35              swap(&arr[i], &arr[largest]);
+    (gdb) c
+    Continuing.
+
+    Breakpoint 12, heapify (arr=0x6054a0, n=6, i=0) at sort.c:35
+    35              swap(&arr[i], &arr[largest]);
+    (gdb) 
+    Continuing.
+
+    Breakpoint 12, heapify (arr=0x6054a0, n=6, i=1) at sort.c:35
+    35              swap(&arr[i], &arr[largest]);
+    (gdb) c
+    Continuing.
+
+    Breakpoint 12, heapify (arr=0x6054a0, n=5, i=0) at sort.c:35
+    35              swap(&arr[i], &arr[largest]);
+    (gdb) c
+    Continuing.
+
+    Breakpoint 12, heapify (arr=0x6054a0, n=4, i=0) at sort.c:35
+    35              swap(&arr[i], &arr[largest]);
+    (gdb) c
+    Continuing.
+
+    Breakpoint 12, heapify (arr=0x6054a0, n=4, i=1) at sort.c:35
+    35              swap(&arr[i], &arr[largest]);
+    (gdb) c
+    Continuing.
+
+    Breakpoint 12, heapify (arr=0x6054a0, n=3, i=0) at sort.c:35
+    35              swap(&arr[i], &arr[largest]);
+    (gdb) print arr[0]
+    $52 = -65
+    (gdb) print arr[2]
+    $53 = -100
+    (gdb) print arr[1]
+    $54 = -22
+    (gdb) c
+    Continuing.
+
+    Breakpoint 12, heapify (arr=0x6054a0, n=2, i=0) at sort.c:35
+    35              swap(&arr[i], &arr[largest]);
+    (gdb) print arr[0]
+    $55 = -100
+    (gdb) print arr[1]
+    $56 = -65
+    (gdb) print arr[2]
+    $57 = -22
+    (gdb) print arr[4]
+    $58 = 12
+bug:(gdb) print arr[3] 
+    $59 = 22
+    (gdb) print arr[5]
+    $60 = 9
+bug:(gdb) print arr[6]
+    $61 = 22    //should be 34, it may because the program fails to reinitialize the memory address,so it keeps
+                //the number 22
+
+cause: the programs does not initialize each pointer and memory address after each operation,resulting
+in two operations that may not change a value at a particular address,so the some value remain the same
+in two outputs
+possible ways to fix problme:use free() function or malloc() to store in other address
+
+
