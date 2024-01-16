@@ -1,0 +1,34 @@
+// Symbol table
+// Scope level 0:
+//	Symbol Name       Page Address
+//	----------------  ------------
+//	R0_OK             300F
+//	BITS              3010
+//	EXAMPLE           3011
+//	R0_BAD            3012
+//	saveRs            3030
+//	loadRs            3038
+//	STRLEN            3040
+//	checking          3043
+//	checked           3048
+//	PRINT_DECIMAL     304B
+//	spzero            304E
+//	here              3053
+//	checkdigit        305B
+//	count             305F
+//	checkeddigit      3063
+//	checkzero         3070
+//	becky             3075
+//	finish            3078
+//	saveR0            307C
+//	saveR1            307D
+//	saveR2            307E
+//	saveR3            307F
+//	saveR4            3080
+//	saveR5            3081
+//	saveR6            3082
+//	saveR7            3083
+//	acsiizero         3084
+//	tens              3085
+//	prespace          308A
+
